@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Nuovo conto corrente</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<script src=
+		"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <style>
+ body{
+ background-color: white;
+ }
+</style>
+<body>
+<h3><p>Cambia colore se il bianco non ti aggrada</p></h3>
+   
+    <button type="button" align = "left" onclick="changecolor()">
+       	Cambia colore
+    </button>
+         
+    <script>
+        function changecolor()
+        {
+            
+            var color = "#"+(Math.random()*16777215|0).toString(16);
+              
+            $("body").css("background-color",color);
+        }
+    </script>
+
+<div align="center">
+<h1>Inserimento conto corrente</h1>
+
+<form action="#" th:action="@{salvaContoCorrente}" th:object="${ContoCorrente}" method="POST">
+			ID correntista <select th:field="*{correntista}">
+				<option th:each="correntista : ${listaCorrentisti}"
+						th:value="${correntista.id}"
+						th:text="${correntista.id}">
+						</option>
+						</select><br>
+
+Numero conto corrente <input required type="text" th:field="*{numeroContoCorrente}" placeholder="Numero del conto corrente" class="form-control mb-4 col-4"><br>
+Saldo iniziale <input required type="number" th:field="*{saldo}" placeholder="Inserire saldo iniziale" min=0 class="form-control mb-4 col-4"> <br>
+
+		<button type="submit" class="btn btn-info col-2">Salva conto corrente</button><br>
+		<br>
+		<a th:href = "@{/}" class="w3-button  w3-green"> Torna alla lista degli utenti</a>
+</form>
+
+</div>
+
+</body>
+</html>

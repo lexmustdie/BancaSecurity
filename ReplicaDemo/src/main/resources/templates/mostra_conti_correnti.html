@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Banca</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<script src=
+		"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <style>
+ body{
+ background-color: white;
+ }
+</style>
+<body>
+<h3><p>Cambia colore se il bianco non ti aggrada</p></h3>
+   
+    <button type="button" align = "left" onclick="changecolor()">
+       	Cambia colore
+    </button>
+         
+    <script>
+        function changecolor()
+        {
+            
+            var color = "#"+(Math.random()*16777215|0).toString(16);
+              
+            $("body").css("background-color",color);
+        }
+    </script>
+
+<div align="center">
+<h1>Lista conti correnti</h1>
+ <br>
+  <br>
+  
+  <table class="w3-table w3-striped w3-border">
+<thead>
+		<tr>
+		
+				
+				<th> N.conto corrente </th>
+		  		<th> Saldo </th>
+		  		<th> ID correntista <th>
+  				<th colspan=3> Opzioni </th>
+  				
+  		</tr>		
+  		</thead>
+  			<tbody>
+  				 
+  				<tr th:each="contoCorrente : ${listaContiCorrenti}">
+  					
+  					<td th:text="${contoCorrente.numeroContoCorrente}"></td> 
+  					<td th:text="${contoCorrente.saldo}"></td>
+  					<td th:text="${contoCorrente.correntista.getId}"></td>
+  					<td> <a th:href="@{/showPrelievoContoCorrenteForm/{id}(id=${contoCorrente.id})}" class="w3-button w3-blue">Prelievo conto corrente</a>
+  					<td> <a th:href="@{/showVersamentoContoCorrenteForm/{id}(id=${contoCorrente.id})}" class="w3-button w3-green">Versamento conto corrente</a>
+  					<td> <a th:href="@{/cancellazioneContoCorrente/{id}(id=${contoCorrente.id})}" class="w3-button w3-red">Cancella conto corrente</a>
+  				</tr>
+  			</tbody>
+  			
+  			
+  </table>
+  <br>
+<a th:href = "@{/}" class="w3-button  w3-green"> Torna alla lista degli utenti</a>
+</body>
+</html>

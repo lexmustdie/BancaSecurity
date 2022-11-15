@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Banca</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<script src=
+		"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <style>
+ body{
+ background-color: white;
+ }
+</style>
+<body>
+<h3><p>Cambia colore se il bianco non ti aggrada</p></h3>
+   
+    <button type="button" align = "left" onclick="changecolor()">
+       	Cambia colore
+    </button>
+         
+    <script>
+        function changecolor()
+        {
+            
+            var color = "#"+(Math.random()*16777215|0).toString(16);
+              
+            $("body").css("background-color",color);
+        }
+    </script>
+
+<div align="center">
+
+<h1>Lista utenti</h1>
+<a th:href = "@{/showNewCorrentistaForm}" class="w3-button w3-blue"> Aggiungi correntista</a>
+<a th:href = "@{/showNewContoCorrenteForm}" class="w3-button w3-blue"> Aggiungi conto</a>
+<br>
+<br>
+<table class="w3-table w3-striped w3-border">
+<thead>
+		<tr>
+		
+				
+				<th> Nome utente </th>
+		  		<th> Cognome utente </th>
+  				<th> Codice Fiscale  </th>
+  				<th> ID </th>
+  				<th colspan=3> Opzioni </th>
+  				
+  		</tr>		
+  		</thead>
+  			<tbody>
+  				 
+  				<tr th:each="correntista : ${listaCorrentisti}">
+  					<td th:text="${correntista.nome}"></td> 
+  					<td th:text="${correntista.cognome}"></td>
+  					<td th:text="${correntista.cf}"></td>
+  					<td th:text="${correntista.id}"></td>
+  					<td> <a th:href="@{/showModificaCorrentistaForm/{id}(id=${correntista.id})}" class="w3-button w3-blue">Modifica correntista</a>
+  					<td> <a th:href="@{/showContiCorrenti/{id}(id=${correntista.id})}" class="w3-button w3-green">Mostra conti correnti</a>
+  					<td> <a th:href="@{/cancellazioneCorrentista/{id}(id=${correntista.id})}" class="w3-button w3-red">Cancella correntista</a>
+  					
+  				</tr>
+  			</tbody>
+  </table>
+  
+  
+</body>
+</html>

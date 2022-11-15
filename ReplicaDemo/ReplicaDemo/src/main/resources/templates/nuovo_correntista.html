@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Nuovo utente</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<script src=
+		"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <style>
+ body{
+ background-color: white;
+ }
+</style>
+<body>
+<h3><p>Cambia colore se il bianco non ti aggrada</p></h3>
+   
+    <button type="button" align = "left" onclick="changecolor()">
+       	Cambia colore
+    </button>
+         
+    <script>
+        function changecolor()
+        {
+            
+            var color = "#"+(Math.random()*16777215|0).toString(16);
+              
+            $("body").css("background-color",color);
+        }
+    </script>
+
+<div align=center>
+<h1>Inserimento correntista</h1>
+
+<form action="#" th:action="@{salvaCorrentista}" th:object="${correntista}" method="POST">
+Nome <input required type="text" th:field="*{nome}" placeholder="Inserire nome utente" class="form-control mb-4 col-4"><br>
+Cognome <input required type="text" th:field="*{cognome}" placeholder="Inserire cognome utente" class="form-control mb-4 col-4"> <br>
+Codice fiscale <input required type="text" th:field="*{cf}" placeholder="Inserire codice fiscale" class="form-control mb-4 col-4"><br>
+
+		<button type="submit" class="btn btn-info col-2">Salva utente</button><br>
+		<br>
+		<a th:href = "@{/}" class="w3-button  w3-green"> Torna alla lista degli utenti</a>
+</form>
+
+</div>
+
+</body>
+</html>

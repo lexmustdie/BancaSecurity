@@ -1,0 +1,52 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Versamento</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<script src=
+		"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <style>
+ body{
+ background-color: white;
+ }
+</style>
+<body>
+<h3><p>Cambia colore se il bianco non ti aggrada</p></h3>
+   
+    <button type="button" align = "left" onclick="changecolor()">
+       	Cambia colore
+    </button>
+         
+    <script>
+        function changecolor()
+        {
+            
+            var color = "#"+(Math.random()*16777215|0).toString(16);
+              
+            $("body").css("background-color",color);
+        }
+    </script>
+
+<div align="center">
+<h1>Versamento</h1>
+
+<form action="#" th:action="@{/versamentoContoCorrente}" th:object="${ContoCorrente}" method="POST">
+<input type="hidden" th:field="*{id}"/>
+<input type="hidden" th:field="*{correntista}"/>
+Numero conto corrente <input required type="text" th:field="*{numeroContoCorrente}" readonly=true class="form-control mb-4 col-4"><br>
+Saldo attuale disponibile <input required type="text" th:field="*{saldo}" th:value="*{saldo}" readonly=true class="form-control mb-4 col-4"><br>
+Quota da versare <input type="number" name="versamento" th:min="0" required /><br>
+
+
+		<button type="submit" class="btn btn-info col-2">Versa</button><br>
+		<br>
+		<a th:href = "@{/}" class="w3-button  w3-green"> Torna alla lista degli utenti</a>
+</form>
+
+</div>
+
+</body>
+</html>
